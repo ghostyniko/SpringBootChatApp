@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Spring Boot WebSocket</title>
+<!--   <link rel="stylesheet" th:href="@{~/css/main.css}" /> -->
+
+<script th:src="@{/js/stomp.js}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<!-- https://cdnjs.com/libraries/sockjs-client -->
+
+</head>
+<body>
+    <div class="col-sm-3 col-md-3 col-lg-3">
+    	
+    		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<span class="panel-title ">Current Users Online</span>
+				
+            
+			</div>
+			<div class="panel-body" id="userBody" style="overflow-y: scroll; height: 400px">
+				<div class="list-group" id="usersArea">
+					<div class="list-group-item" th:each="user : ${users}" th:id="${user.username}">
+						<h4 th:text="${user.username}" ></h4>
+					</div>
+				</div>
+			</div>
+			
+			<div class="panel-footer">
+				
+		</div>
+		</div>
+   
+	</div>
+	
+	<div class="col-sm-9 col-md-9 col-lg-9" >
+	
+		
+
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<span class="panel-title ">Spring WebSocket Chat</span>
+				
+				<span class="panel-title pull-right">
+               		<span id="username" th:utext="${username}"></span>
+               		<a id="logout" th:href="@{/logout}">Logout</a>
+            	</span>
+            
+			</div>
+			<div class="panel-body" id="body" style="overflow-y: scroll; height: 400px">
+				<div class="list-group" id="messageArea">
+					
+				</div>
+			</div>
+			
+			<div class="panel-footer">
+				<form id="messageForm" name="messageForm">
+            		<div class="input-message">
+               			<input type="text" id="message" autocomplete="off"
+                 		 placeholder="Type a message..."/>
+               			<button class="btn btn-primary" type="submit">Send</button>
+            		</div>
+         	</form>
+		</div>
+		</div>
+		</div>
+		
+	<script th:src="@{/js/main.js}"></script>
+		
+</body>
+</html>

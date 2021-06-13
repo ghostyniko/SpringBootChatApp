@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+
+	<div id="login-container">
+         <h1 class="title">Enter your username</h1>
+         <form id="loginForm" name="loginForm" method="POST">
+            <input type="text" name="username" />
+            <button type="submit" id="btn">Login</button>
+         </form>
+      </div>
+      <script th:inline="javascript">
+/*<![CDATA[*/
+
+var message = [[${error}]];
+if (message!=null)
+	alert(message);
+
+/*]]>*/
+</script>
+
+      <script type="text/javascript">
+			var supportsWebSockets = 'WebSocket' in window || 'MozWebSocket' in window;
+			if (!supportsWebSockets){
+				alert( "This browser doesn't support HTML5 Web Sockets!" );
+				document.getElementById("btn").disabled = true;
+		
+			}
+</script>
+</body>
+
+
+</html>

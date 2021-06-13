@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	
+	<span id="username" th:utext="${username}"></span>
+	<a th:href="@{/logout}">Logout</a>
+     
+      
+      <script src="stomp.js"></script>
+      
+      
+      <!-- https://cdnjs.com/libraries/stomp.js/ -->
+      >
+      
+	<button id="btn" value="Klikni">Klikni</button>
+	<div id="messages" class="messages"></div>
+</body>
+
+<script type="text/javascript">
+
+	const messageWindow = document.getElementById("messages");
+
+	document.getElementById("btn").onclick = function () {  
+		const socket = new WebSocket("ws://localhost:8080/ws");
+		
+		socket.onopen = function (event) {
+   	     	addMessageToWindow("Connected");
+   		 };
+   		 
+   		socket.onmessage = function (event) {
+   	        if (event.data instanceof ArrayBuffer) {
+   	            addMessageToWindow('Got Image:');
+   	            addImageToWindow(event.data);
+   	        } else {
+   	            addMessageToWindow(`Got Message: ${event.data}`);
+   	        }
+   	    };
+   	    
+	};
+	
+   	    
+   	 function addMessageToWindow(message) {
+         messageWindow.innerHTML += `<div>${message}</div>`
+     }
+    
+	
+</script>
+</html>
+<div class="panel-body" id="userBody" style="overflow-y: scroll; height: 400px">
+				<div class="list-group" id="usersArea" th:each="user : ${users}">
+					<div class="list-group-item" th:id="${user.username}">
+						<h4 th:text="${user.username}" ></h4>
+					</div>
+				</div>
+			</div>
