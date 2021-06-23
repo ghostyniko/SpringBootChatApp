@@ -3,26 +3,34 @@
 
 <head>
 <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
+    />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 <title>Insert title here</title>
 </head>
-<body>
+<body style="min-height: 100vh;" class="bg-dark d-flex flex-column justify-content-center align-items-center">
 
-
-	<div id="login-container">
-         <h1 class="title">Enter your username</h1>
+	
+	
+         <h1 class="title text-light">Enter your username</h1>
+         <hr class="text-light">
          <form id="loginForm" name="loginForm" method="POST">
             <input type="text" name="username" />
-            <button type="submit" id="btn">Login</button>
+            <button class="btn btn-primary" type="submit" id="btn">Login</button>
          </form>
-      </div>
-      <script th:inline="javascript">
-/*<![CDATA[*/
+      
 
-var message = [[${error}]];
-if (message!=null)
-	alert(message);
+<script th:inline="javascript">
 
-/*]]>*/
+
+		/*var message = [[${error}]];
+		if (message!=null)
+			alert(message);*/
+
+
 </script>
 
       <script type="text/javascript">

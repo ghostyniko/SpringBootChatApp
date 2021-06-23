@@ -28,7 +28,7 @@ function connect() {
  
    // stompClient.connect({}, onConnected, onError);
     
-    var socket = new WebSocket('ws://localhost:8080/ws');
+    var socket = new WebSocket('ws://192.168.1.100:8080/ws');
 	stompClient = Stomp.over(socket);
 
     stompClient.connect({}, onConnected, onError);
@@ -118,11 +118,28 @@ function onMessageReceived(payload) {
  
     var messageElement = document.createElement('div');
     messageElement.classList.add('list-group-item');
-     
-    var usernameElement = document.createElement('h2');
+    messageElement.setAttribute('style','max-width:80%');
+    
+    messageElement.classList.add('m-3');
+    messageElement.classList.add('text-light');
+    
+    if (message.sender===username){
+		messageElement.classList.add('align-self-end'); 
+    	messageElement.classList.add('bg-success');
+	}
+	else{
+		messageElement.classList.add('align-self-start'); 
+    	messageElement.classList.add('bg-primary');
+	}
+    
+    
+    messageElement.classList.add('rounded');
+    
+    var usernameElement = document.createElement('h5');
        
     var usernameText = document.createTextNode(message.sender);
     var usernameText = document.createTextNode(message.sender);
+    
     usernameElement.appendChild(usernameText);
     messageElement.appendChild(usernameElement);
     

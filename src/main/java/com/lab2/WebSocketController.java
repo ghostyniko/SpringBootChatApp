@@ -21,6 +21,7 @@ public class WebSocketController {
 	@MessageMapping("/chat.sendMessage")
     @SendTo("/topic/publicChatRoom")
     public ChatMessage sendMessage(@Payload ChatMessage chatMessage) {
+		System.out.println(chatMessage.getSender() + " "+"salje poruku" );
         return chatMessage;
     }
 	
